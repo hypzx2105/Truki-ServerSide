@@ -19,7 +19,7 @@
         @endif
 
         <div class="flex justify-between items-center">
-            <a href="{{ route('portfolios.edit', $portfolio) }}"
+            <a href="{{ route('portfolios.edit', $portfolio) }}"  
                class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-2 rounded">
                 Edit
             </a>
