@@ -17,7 +17,7 @@
         @if ($portfolio->image_url ?? false)
             <img src="{{ $portfolio->image_url }}" alt="Portfolio Image" class="w-full rounded-lg shadow mb-6">
         @endif
-
+  
         <div class="flex justify-between items-center">
             <a href="{{ route('portfolios.edit', $portfolio) }}"  
                class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-2 rounded">
