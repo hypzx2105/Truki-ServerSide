@@ -10,7 +10,7 @@
         </a>
     </div>
 
-  
+    <!-- Search Form -->
     <form method="GET" action="{{ route('portfolios.index') }}" class="mb-6 max-w-md">
         <input
             type="text"
@@ -28,19 +28,19 @@
     @endif
 
     @if($portfolios->count())
-        <div class="grid gap-6">
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             @foreach($portfolios as $portfolio)
-                <div class="bg-white p-6 rounded-lg shadow">
-                    <h2 class="text-xl font-bold text-indigo-700">{{ $portfolio->title }}</h2>
-                    <p class="text-gray-700 mt-2">{{ $portfolio->content }}</p>
+                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
+                    <h2 class="text-xl font-bold text-indigo-700 mb-2">{{ $portfolio->title }}</h2>
+                    <p class="text-gray-700 mb-4">{{ $portfolio->content }}</p>
 
                     @if($portfolio->media_url)
                         <img src="{{ asset('storage/' . $portfolio->media_url) }}"
                              alt="Portfolio Image"
-                             class="mt-4 max-w-xs rounded shadow">
+                             class="w-full h-60 object-cover rounded mb-4">
                     @endif
 
-                    <div class="mt-4 flex space-x-2">
+                    <div class="flex space-x-2">
                         <a href="{{ route('portfolios.edit', $portfolio) }}"
                            class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm">
                             Edit
