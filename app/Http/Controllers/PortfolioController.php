@@ -4,13 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Portfolio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PortfolioController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $portfolios = Portfolio::latest()->get();
-        return view('portfolios.index', compact('portfolios'));
+        $search = $request->input('search');
+
+        $portfolios = Portfolio::query()
+            ->when($search, function ($query, $search) {
+                $query->where('title', 'like', "%{$search}%")
+                      ->orWhere('content', 'like', "%{$search}%");
+            })
+            ->latest()
+            ->get();
+
+        return view('portfolios.index', compact('portfolios', 'search'));
     }
 
     public function create()
@@ -20,15 +30,17 @@ class PortfolioController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required',
+            'content' => 'required|string',
+            'media' => 'nullable|image|max:2048',
         ]);
 
-        Portfolio::create([
-            'title' => $request->title,
-            'content' => $request->content,
-        ]);
+        if ($request->hasFile('media')) {
+            $validated['media_url'] = $request->file('media')->store('portfolios', 'public');
+        }
+
+        Portfolio::create($validated);
 
         return redirect()->route('portfolios.index')->with('success', 'Portfolio created!');
     }
@@ -45,22 +57,32 @@ class PortfolioController extends Controller
 
     public function update(Request $request, Portfolio $portfolio)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required',
+            'content' => 'required|string',
+            'media' => 'nullable|image|max:2048',
         ]);
 
-        $portfolio->update([
-            'title' => $request->title,
-            'content' => $request->content,
-        ]);
+        if ($request->hasFile('media')) {
+            if ($portfolio->media_url) {
+                Storage::disk('public')->delete($portfolio->media_url);
+            }
+            $validated['media_url'] = $request->file('media')->store('portfolios', 'public');
+        }
+
+        $portfolio->update($validated);
 
         return redirect()->route('portfolios.index')->with('success', 'Portfolio updated!');
     }
 
     public function destroy(Portfolio $portfolio)
     {
+        if ($portfolio->media_url) {
+            Storage::disk('public')->delete($portfolio->media_url);
+        }
+
         $portfolio->delete();
+
         return redirect()->route('portfolios.index')->with('success', 'Portfolio deleted!');
     }
 }
