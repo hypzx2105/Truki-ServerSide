@@ -5,20 +5,16 @@
 @section('content')
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold">All Portfolios</h1>
-        <a href="{{ route('portfolios.create') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded">
+        <a href="{{ route('portfolios.create') }}"
+           class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded">
             + New Portfolio
         </a>
     </div>
 
-    <!-- Search Form -->
-    <form method="GET" action="{{ route('portfolios.index') }}" class="mb-6 max-w-md">
-        <input
-            type="text"
-            name="search"
-            value="{{ request('search') }}"
-            placeholder="Search portfolios..."
-            class="w-full p-2 border border-gray-300 rounded"
-        >
+    <form method="GET" action="{{ route('portfolios.index') }}" class="mb-6">
+        <input type="text" name="search" placeholder="Search portfolios..."
+               value="{{ request('search') }}"
+               class="w-full p-2 border rounded shadow-sm">
     </form>
 
     @if(session('success'))
@@ -28,25 +24,26 @@
     @endif
 
     @if($portfolios->count())
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($portfolios as $portfolio)
-                <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition">
-                    <h2 class="text-xl font-bold text-indigo-700 mb-2">{{ $portfolio->title }}</h2>
-                    <p class="text-gray-700 mb-4">{{ $portfolio->content }}</p>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h2 class="text-xl font-bold text-indigo-700">{{ $portfolio->title }}</h2>
+                    <p class="text-gray-700 mt-2">{{ $portfolio->content }}</p>
 
                     @if($portfolio->media_url)
                         <img src="{{ asset('storage/' . $portfolio->media_url) }}"
                              alt="Portfolio Image"
-                             class="w-full h-60 object-cover rounded mb-4">
+                             class="w-full h-60 object-cover rounded mt-4 mb-4 shadow-sm">
                     @endif
 
-                    <div class="flex space-x-2">
+                    <div class="flex space-x-2 mt-4">
                         <a href="{{ route('portfolios.edit', $portfolio) }}"
                            class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm">
                             Edit
                         </a>
 
-                        <form action="{{ route('portfolios.destroy', $portfolio) }}" method="POST" onsubmit="return confirm('Are you sure?')">
+                        <form action="{{ route('portfolios.destroy', $portfolio) }}" method="POST"
+                              onsubmit="return confirm('Are you sure you want to delete this portfolio?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit"
@@ -59,6 +56,6 @@
             @endforeach
         </div>
     @else
-        <p class="text-gray-600">No portfolios found yet.</p>
+        <p class="text-gray-600">No portfolios found.</p>
     @endif
 @endsection
