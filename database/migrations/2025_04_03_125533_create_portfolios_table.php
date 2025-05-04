@@ -6,20 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    
     public function up()
-{
-    Schema::create('portfolios', function (Blueprint $table) {
-        $table->id();
-        $table->foreignId('user_id')->constrained()->onDelete('cascade');
-        $table->string('title');
-        $table->text('content');
-        $table->string('media_url')->nullable();
-        $table->timestamps();
-    });
-}
+    {
+        Schema::create('portfolios', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->text('content');
+            $table->string('media_url')->nullable(); 
+            $table->timestamps();
+        });
+    }
 
-    
     public function down(): void
     {
         Schema::dropIfExists('portfolios');

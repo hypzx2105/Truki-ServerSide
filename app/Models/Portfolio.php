@@ -10,14 +10,8 @@ class Portfolio extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'title',
         'content',
         'media_url',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }
