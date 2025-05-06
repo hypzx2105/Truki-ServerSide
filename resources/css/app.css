@@ -1,3 +1,1379 @@
+@import './components/navbar';
+@import './components/footer';
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Meie+Script&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Enhanced color scheme with more depth */
+:root {
+    --primary: #2b6cb0;         /* Changed to blue */
+    --primary-dark: #1e4e8c;    /* Dark blue */
+    --primary-light: #ebf4ff;   /* Light blue */
+    --bg-light: #f9f9f9;
+    --text-dark: #212121;
+    --text-medium: #616161;
+    --accent: #ffab40;
+}
+
+/* Body Styles */
+body {
+    background-color: #ffffff;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNmMGY0ZmYiPjwvcmVjdD4KPC9zdmc+');
+    background-attachment: fixed;
+}
+
+/* Make body transition smoothly when side nav opens */
+body {
+    transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-left: 0;
+    overflow-x: hidden; /* Prevent horizontal scrollbar during transition */
+}
+
+/* When side navigation is open, shift the entire body content */
+body.shifted {
+    margin-left: 18rem; /* 72px or 18rem - matches the width of side-nav */
+}
+
+/* Ensure the side navigation is always visible above the content */
+.side-nav {
+    z-index: 50; /* Higher than navbar but lower than nav-toggle */
+}
+
+/* Ensure the side navigation toggle button stays visible */
+.nav-toggle {
+    z-index: 60; /* Higher than side-nav */
+}
+
+/* Make sure footer transitions smoothly with the rest of the content */
+.starry-footer {
+    transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Make sure the navbar transitions smoothly with the rest of the content */
+.navbar {
+    transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animation Utilities */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 0.9; }
+    100% { opacity: 0.6; }
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+    animation: pulse 4s ease-in-out infinite;
+}
+
+.animate-rotate {
+    animation: rotate 20s linear infinite;
+}
+
+/* Auto-scrolling carousel styling */
+.animate-scroll {
+    animation: scroll 60s linear infinite;
+    width: max-content;
+    display: flex;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Modified calculation to exactly match the width of all cards */
+        transform: translateX(calc(-240px * 6)); /* card width * number of unique cards */
+    }
+}
+
+/* Micro-interaction animations */
+@keyframes sparkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 0.8; transform: scale(1.2); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -100% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes ripple {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+.animate-sparkle {
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+    background: linear-gradient(90deg, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.4) 50%, 
+        rgba(255,255,255,0) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* Button with ripple effect */
+.btn-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+}
+
+/* Reveal section animations */
+.reveal-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Make sure there's no gap between cards */
+.feature-card {
+    flex: 0 0 auto;
+    width: 240px;
+    margin: 0 8px; /* Consistent margins */
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--primary);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Container to hold both original and duplicate sets */
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Inner container that animates */
+.carousel-track {
+    display: flex;
+}
+
+/* Scroll Animations */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-up.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Decorative Corner Elements */
+.corner-decoration {
+    position: relative;
+    overflow: hidden;
+}
+
+.corner-decoration::before,
+.corner-decoration::after,
+.corner-decoration .corner-bottom-right::before,
+.corner-decoration .corner-bottom-right::after {
+    display: none;
+}
+
+.corner-decoration::before {
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 1px;
+    background: linear-gradient(to right, rgba(43, 108, 176, 0.7), transparent);
+}
+
+.corner-decoration::after {
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 20px;
+    background: linear-gradient(to bottom, rgba(43, 108, 176, 0.7), transparent);
+}
+
+.corner-decoration .corner-bottom-right::before {
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 1px;
+    background: linear-gradient(to left, rgba(43, 108, 176, 0.7), transparent);
+}
+
+.corner-decoration .corner-bottom-right::after {
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    height: 20px;
+    background: linear-gradient(to top, rgba(43, 108, 176, 0.7), transparent);
+}
+
+/* Star Corner Decoration */
+.star-corner-tl {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    color: #2b6cb0;
+    opacity: 0.4;
+    font-size: 1.25rem;
+    transform: rotate(12deg);
+}
+
+.star-corner-br {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    color: #2b6cb0;
+    opacity: 0.4;
+    font-size: 1.25rem;
+    transform: rotate(-12deg);
+}
+
+/* Enhanced Hover States */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(43, 108, 176, 0.1);
+}
+
+/* Section Dividers */
+.wave-divider {
+    position: relative;
+    height: 50px;
+    margin-top: -1px;
+}
+
+.wave-divider svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    fill: #ebf4ff;
+}
+
+.symbol-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 0;
+}
+
+.symbol-divider::before,
+.symbol-divider::after {
+    content: '';
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(43, 108, 176, 0.3), transparent);
+    margin: 0 1rem;
+}
+
+.symbol-divider span {
+    color: #2b6cb0;
+    font-size: 1.25rem;
+}
+
+.gradient-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(43, 108, 176, 0.5), transparent);
+    margin: 3rem 0;
+}
+
+/* Floating Elements */
+.floating-element {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Base Styles with more sophistication */
+@layer base {
+    * {
+        @apply font-sans font-light;
+        font-family: "Roboto Condensed", sans-serif;
+        font-optical-sizing: auto;
+    }
+
+    ::selection {
+        @apply bg-primary-light text-primary;
+    }
+
+    body {
+        @apply bg-white text-gray-800 antialiased;
+    }
+}
+
+@layer components {
+    /* Enhanced Typography */
+    .dm-serif-text-regular {
+        @apply font-serif font-normal;
+        font-family: "DM Serif Text", serif;
+        letter-spacing: 0.5px;
+    }
+
+    .meie-script-regular {
+        @apply text-5xl font-normal;
+        font-family: "Meie Script", serif;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    /* Side Navigation - More elegant */
+    .nav-toggle {
+        @apply fixed top-6 left-6 z-50 w-12 h-12 flex flex-col justify-around p-2.5 rounded-full bg-white shadow-lg cursor-pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-toggle span {
+        @apply block h-0.5 w-full bg-gray-800 origin-center;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-toggle.open {
+    left: 1rem !important; /* Move toggle button with the side nav */
+    background-color: #dde4eb !important; /* Change background when open */
+}
+
+    .nav-toggle.open span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .nav-toggle.open span:nth-child(2) {
+        @apply opacity-0;
+        transform: translateX(-10px);
+    }
+
+    .nav-toggle.open span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    .side-nav {
+        @apply fixed h-full w-72 -left-72 top-0 bg-white shadow-xl z-40 flex flex-col pt-24;
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .side-nav.open {
+        left: 0 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+    display: flex !important;
+    }
+
+    .nav-links {
+        @apply p-10 flex-grow;
+    }
+
+    .nav-links ul {
+        @apply list-none space-y-6;
+    }
+
+    .nav-links a {
+        @apply text-gray-800 no-underline text-lg transition-all duration-500 block py-1.5 relative pl-8;
+        font-family: "Cormorant Garamond", serif;
+    }
+
+    .nav-links a::before {
+        content: '';
+        @apply absolute w-2 h-0.5 bg-primary left-0 top-1/2 transform -translate-y-1/2;
+        transition: all 0.3s ease;
+        opacity: 0;
+    }
+
+    .nav-links a:hover {
+        @apply text-primary pl-10;
+    }
+
+    .nav-links a:hover::before {
+        @apply opacity-100 w-4;
+    }
+
+    .nav-footer {
+        @apply p-6 text-center text-xs text-gray-500 border-t border-gray-100;
+        font-family: "Cormorant Garamond", serif;
+    }
+
+    /* Main Content */
+    .main-content {
+        transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .main-content.shifted {
+        @apply ml-72;
+    }
+
+    /* Modern Sticker Welcome Badge */
+    .truki-welcome-badge {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        transform: perspective(800px);
+        transition: transform 0.5s ease;
+    }
+
+    .truki-welcome-badge-bg {
+        position: absolute;
+        inset: -5px -10px;
+        background-color: #ebf4ff; /* Primary light */
+        border-radius: 9999px;
+        transform: rotate(3deg) scale(1.05);
+        box-shadow: 0 6px 12px rgba(43, 108, 176, 0.1);
+        transition: all 0.5s ease;
+        border: 2px solid rgba(43, 108, 176, 0.1);
+    }
+
+    .truki-welcome-badge-content {
+        position: relative;
+        background-color: #ebf4ff;
+        color: #2b6cb0; /* Primary color */
+        padding: 0.8rem 2.5rem;
+        border-radius: 9999px;
+        /* font-size: 1.125rem; */
+        font-size: 1.250rem;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        transform: rotate(-2deg);
+        border: 2px solid rgba(43, 108, 176, 0.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        transition: all 0.5s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .truki-welcome-star {
+        font-size: 1.25rem;
+        display: inline-block;
+        transition: transform 0.8s ease;
+    }
+
+    /* Hover animations */
+    .truki-welcome-badge:hover {
+        transform: perspective(800px) translateY(-5px);
+    }
+
+    .truki-welcome-badge:hover .truki-welcome-badge-bg {
+        transform: rotate(5deg) scale(1.08);
+        box-shadow: 0 8px 16px rgba(43, 108, 176, 0.15);
+    }
+
+    .truki-welcome-badge:hover .truki-welcome-badge-content {
+        transform: rotate(-3deg);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .truki-welcome-badge:hover .truki-welcome-star {
+        transform: rotate(360deg);
+    }
+
+    /* For small screens */
+    @media (max-width: 640px) {
+        .truki-welcome-badge-content {
+            padding: 0.6rem 1.8rem;
+            font-size: 1rem;
+        }
+    }
+
+    /* Hero Section Styles */
+    .hero-section {
+        @apply relative flex items-center overflow-hidden;
+        height: 85vh;
+    }
+
+    .hero-background {
+        @apply absolute inset-0;
+    }
+
+    .hero-bg {
+        @apply w-full h-full object-cover;
+        filter: grayscale(30%) contrast(110%) brightness(90%);
+    }
+
+    /* Split hero section */
+    .hero-split-section {
+        @apply flex flex-row relative;
+        background-color: var(--bg-light);
+        height: 85vh; /* Use min-height instead of fixed height */
+        padding-top: 1rem; /* Add top padding to the entire section */
+    }
+
+    /* Left video side - Updated for better spacing */
+    .hero-split-video {
+        @apply w-1/2 relative overflow-hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 2rem; /* Increased top padding to fix spacing */
+        padding-top: 4rem; /* Extra top padding */
+        background-color: var(--bg-light);
+    }
+
+    /* Ensure consistent height for better alignment */
+    .hero-split-content, .hero-split-video {
+        min-height: 80vh; /* Consistent height */
+    }
+
+    .hero-split-video video {
+        width: 85%;
+        height: 85%; 
+        object-fit: cover;
+        border-radius: 1rem;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Hero Section Abstract Shapes */
+    .hero-split-section {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-abstract-shapes {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .hero-blob {
+        position: absolute;
+        border-radius: 50%;
+        background-color: #ebf4ff;
+        filter: blur(40px);
+        opacity: 0.5;
+    }
+
+    .hero-blob-1 {
+        width: 300px;
+        height: 300px;
+        top: -100px;
+        right: 10%;
+        animation: float 12s ease-in-out infinite;
+    }
+
+    .hero-blob-2 {
+        width: 200px;
+        height: 200px;
+        bottom: 50px;
+        right: 30%;
+        animation: float 15s ease-in-out infinite reverse;
+    }
+
+    .hero-blob-3 {
+        width: 250px;
+        height: 250px;
+        top: 40%;
+        left: -50px;
+        animation: float 18s ease-in-out infinite 1s;
+    }
+
+    .hero-star {
+        position: absolute;
+        color: #2b6cb0;
+        opacity: 0.3;
+        font-size: 1.5rem;
+    }
+
+    .hero-star-1 {
+        top: 15%;
+        right: 20%;
+        animation: float 10s ease-in-out infinite;
+    }
+
+    .hero-star-2 {
+        bottom: 25%;
+        left: 15%;
+        animation: pulse 8s ease-in-out infinite;
+    }
+
+    .hero-dot {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #2b6cb0;
+        opacity: 0.3;
+    }
+
+    .hero-dot-1 {
+        top: 20%;
+        left: 30%;
+        animation: pulse 6s ease-in-out infinite;
+    }
+
+    .hero-dot-2 {
+        bottom: 30%;
+        right: 25%;
+        animation: pulse 7s ease-in-out infinite 1s;
+    }
+
+    .hero-dot-3 {
+        top: 40%;
+        right: 40%;
+        animation: pulse 5s ease-in-out infinite 2s;
+    }
+
+    /* Interactive floating elements that respond to mouse movement */
+.hero-interactive-elements {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-float-element {
+    position: absolute;
+    transition: transform 0.5s ease-out;
+}
+
+.hero-float-1 {
+    top: 15%;
+    right: 25%;
+    font-size: 1.5rem;
+    color: #2b6cb0;
+    opacity: 0.3;
+}
+
+.hero-float-2 {
+    bottom: 20%;
+    left: 15%;
+    font-size: 1.25rem;
+    color: #2b6cb0;
+    opacity: 0.2;
+}
+
+.hero-float-3 {
+    top: 30%;
+    left: 30%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #2b6cb0;
+    opacity: 0.15;
+}
+
+.hero-float-4 {
+    bottom: 35%;
+    right: 20%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #2b6cb0;
+    opacity: 0.1;
+}
+
+    /* Make sure hero content has proper z-index */
+    .hero-split-video,
+    .hero-split-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Center divider */
+    .hero-divider {
+        @apply w-px h-full bg-gray-200 z-10;
+    }
+
+    /* Right content side */
+    .hero-split-content {
+        @apply w-1/2 flex flex-col justify-center px-16 relative;
+    }
+
+    /* Hero content elements */
+    .hero-pill {
+        @apply inline-block bg-primary-light text-primary px-6 py-2.5 rounded-full text-base font-normal mb-6 tracking-wider;
+        font-family: "Cormorant Garamond", serif;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .hero-title {
+        @apply text-5xl leading-tight mb-8 text-gray-900 dm-serif-text-regular tracking-tight;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .hero-description {
+        @apply text-lg text-gray-600 mb-8 leading-relaxed max-w-lg;
+        font-family: "Cormorant Garamond", serif;
+    }
+
+    .hero-button {
+        @apply inline-flex items-center bg-primary text-white px-8 py-4 rounded-full font-semibold tracking-wide transition-all duration-500 hover:bg-primary-dark hover:shadow-lg hover:-translate-y-0.5;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Page Title with Fancy Font */
+    .page-title-container {
+        @apply py-16 text-center;
+    }
+
+    .page-title-container h2 {
+        @apply text-5xl mb-3;
+    }
+
+    /* Auto-Scrolling Carousel Styles */
+    .relative.w-full.overflow-hidden.py-10 {
+        overflow: hidden;
+    }
+
+    /* Feature Card Styles - Enhanced with interactive effects */
+.feature-card {
+    flex: 0 0 auto;
+    width: 240px;
+    margin: 0 8px;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--primary);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Improved animation curve */
+    position: relative;
+    overflow: hidden;
+    transform-origin: center bottom; /* Makes cards pivot from bottom */
+}
+
+.feature-card:hover {
+    transform: translateY(-10px) scale(1.02); /* Slightly larger on hover */
+    box-shadow: 0 15px 30px rgba(43, 108, 176, 0.15);
+    border-left: 4px solid var(--primary);
+}
+
+/* Add subtle shine effect on hover */
+.feature-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    opacity: 0;
+    transition: transform 0.7s ease, opacity 0.7s ease;
+}
+
+.feature-card:hover::after {
+    transform: rotate(30deg) translate(50%, 50%);
+    opacity: 1;
+}
+
+.feature-icon {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card:hover .feature-icon {
+    transform: rotate(12deg) scale(1.1);
+    background-color: rgba(43, 108, 176, 0.2);
+    box-shadow: 0 0 12px rgba(43, 108, 176, 0.3);
+}
+
+/* Enhanced title animation */
+.feature-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #374151;
+    margin-bottom: 0.75rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.feature-card:hover .feature-title {
+    color: var(--primary);
+    transform: translateX(3px);
+}
+
+/* Enhanced description animation */
+.feature-description {
+    color: #6B7280;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    transition: opacity 0.3s ease;
+}
+
+.feature-card:hover .feature-description {
+    opacity: 0.9;
+}
+
+/* Feature card highlight indicator */
+.feature-highlight {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.feature-card:hover .feature-highlight {
+    width: 100%;
+}
+
+    /* Portfolio Card Styles with Decorative Corners */
+    /* Fix for the top-left corner issue in portfolio cards */
+.portfolio-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease;
+    width: 380px;
+    margin: 0 auto;
+}
+
+/* Fix the image container specifically */
+.portfolio-card .h-48 {
+    border-top-left-radius: 0.5rem !important;
+    border-top-right-radius: 0.5rem !important;
+    overflow: hidden;
+}
+
+/* Make corners actually display */
+.portfolio-card::before,
+.portfolio-card::after,
+.portfolio-card .corner-bottom-right::before,
+.portfolio-card .corner-bottom-right::after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    display: block; /* Ensure they're visible */
+    pointer-events: none;
+}
+
+    .portfolio-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(43, 108, 176, 0.1);
+    }
+
+    .portfolio-card::before,
+.portfolio-card::after {
+    display: none !important;
+}
+
+    .portfolio-card::before {
+        top: 0;
+        left: 0;
+        width: 20px;
+        height: 1px;
+        background: linear-gradient(to right, rgba(43, 108, 176, 0.7), transparent);
+    }
+
+    .portfolio-card::after {
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 20px;
+        background: linear-gradient(to bottom, rgba(43, 108, 176, 0.7), transparent);
+    }
+
+    .portfolio-card .corner-bottom-right::before,
+    .portfolio-card .corner-bottom-right::after {
+        display: none;
+    }
+
+    .portfolio-card .corner-bottom-right::before {
+        bottom: 0;
+        right: 0;
+        width: 20px;
+        height: 1px;
+        background: linear-gradient(to left, rgba(43, 108, 176, 0.7), transparent);
+    }
+
+    .portfolio-card .corner-bottom-right {
+    display: none !important;
+}
+
+    .portfolio-card .star-corner-tl,
+.portfolio-card .star-corner-br {
+    display: block;
+    z-index: 3;
+}
+
+    .portfolio-card:hover .star-corner-tl,
+    .portfolio-card:hover .star-corner-br {
+        opacity: 0.6;
+        transform: scale(1.2);
+    }
+
+    /* Fix portfolio image hover overlay color */
+.portfolio-card .h-48 .group-hover\:opacity-20 {
+    background-color: rgba(0, 0, 0, 0.2) !important; /* Change to black with low opacity */
+    opacity: 0.2;
+}
+
+/* Alternative approach if the above doesn't work */
+.portfolio-card .group:hover .absolute.inset-0.bg-primary {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    opacity: 0.2;
+}
+
+    /* CTA Section Styles - No Purple, No Gradient */
+    /* Text shadow for better readability on image backgrounds */
+.text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+    .py-20.relative.overflow-hidden h2,
+    .py-20.relative.overflow-hidden p {
+        color: #ffffff !important; /* Keep white text */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important; /* Add text shadow for readability */
+    }
+
+    .py-20.relative.overflow-hidden a.bg-white {
+        color: #2b6cb0 !important; /* Blue text on white button */
+    }
+
+    .py-20.relative.overflow-hidden a.bg-transparent {
+        color: #ffffff !important; /* White text on transparent button */
+        border-color: #ffffff !important; /* White border */
+    }
+
+    .py-20.relative.overflow-hidden * {
+        --tw-bg-opacity: 1 !important;
+        --tw-text-opacity: 1 !important;
+        --tw-border-opacity: 1 !important;
+    }
+
+    .py-20.relative.overflow-hidden *[class*="purple"],
+    .py-20.relative.overflow-hidden *[class*="indigo"] {
+        background-color: transparent !important;
+        color: inherit !important;
+        border-color: transparent !important;
+    }
+
+    .py-20 .bg-white {
+        background-color: #ffffff !important; 
+        color: #2b6cb0 !important;
+    }
+
+    .py-20 .bg-transparent {
+        background-color: transparent !important;
+        color: #ffffff !important;
+    }
+}
+
+/* Toolkit section with floral background */
+.toolkit-section {
+    position: relative;
+    background-color: var(--bg-light);
+}
+
+.toolkit-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/public/images/flowers.jpg');  
+    background-position: center center;
+    background-size: auto;
+    background-repeat: repeat;
+    opacity: 0.15; 
+    z-index: -1;
+}
+
+/* CTA section with light background */
+/* Animated Ocean Waves CTA Section */
+.cta-ocean-section {
+    position: relative;
+    background-color: #3b4f68; /* Deep blue-gray base */
+    color: #626f75; /* Muted blue-gray text */
+    overflow: hidden;
+}
+
+.cta-ocean-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        #ebf4ff 0%,
+        #cad9e2 50%,
+        #aebec7 100%
+    );
+    z-index: -2;
+}
+
+
+
+.cta-wave {
+    position: absolute;
+    width: 200%;
+    height: 100px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25' fill='%234a7fcc'/%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' opacity='.5' fill='%232b6cb0'/%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z' fill='%231a4a7c'/%3E%3C/svg%3E");
+    background-size: 1200px 100px;
+    z-index: -1;
+}
+
+.cta-wave-1 {
+    bottom: 0;
+    opacity: 0.8;
+    animation: wave 25s linear infinite;
+}
+
+.cta-wave-2 {
+    bottom: 10px;
+    opacity: 0.5;
+    animation: wave 20s linear infinite reverse;
+}
+
+.cta-wave-3 {
+    bottom: 20px;
+    opacity: 0.2;
+    animation: wave 15s linear infinite;
+}
+
+@keyframes wave {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Enhanced CTA buttons for ocean theme */
+.cta-ocean-section a.bg-white {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+}
+
+.cta-ocean-section a.bg-white:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cta-ocean-section a.bg-transparent {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+}
+
+.cta-ocean-section a.bg-transparent:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced text shadow for better readability on the wave background */
+.cta-ocean-section h2,
+.cta-ocean-section p {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cta-section {
+    position: relative;
+    background-color: var(--bg-light);
+}
+
+.cta-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-light);
+    background-image: linear-gradient(
+        to bottom right,
+        rgba(43, 108, 176, 0.05),
+        rgba(43, 108, 176, 0.1)
+    );
+    z-index: -1;
+    animation: bg-pulse 15s ease-in-out infinite;
+}
+
+@keyframes bg-pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    video.hero-bg {
+        object-position: center; /* Better centering for mobile devices */
+    }
+    
+    .hero-section {
+        height: 75vh;
+    }
+    
+    .hero-content {
+        @apply ml-8 max-w-md;
+    }
+    
+    .hero-title {
+        @apply text-4xl;
+    }
+    
+    .main-content.shifted {
+        @apply ml-0;
+    }
+    
+    .side-nav {
+        @apply w-80 -left-80;
+    }
+
+    /* Split layout responsive adjustments */
+    .hero-split-section {
+        @apply flex-col;
+    }
+    
+    .hero-split-video, .hero-split-content {
+        @apply w-full;
+    }
+    
+    .hero-split-video {
+        @apply h-1/2;
+    }
+    
+    .hero-divider {
+        @apply w-full h-px;
+    }
+    
+    .hero-split-content {
+        @apply px-8 py-10;
+    }
+    
+    .hero-title {
+        @apply text-3xl;
+    }
+    
+    .feature-card {
+        width: 240px;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-section {
+        height: 65vh;
+    }
+    
+    .hero-overlay {
+        background: linear-gradient(15deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.75) 75%, rgba(255,255,255,0.5) 100%);
+    }
+    
+    .hero-content {
+        @apply mx-auto text-center px-6;
+    }
+    
+    .hero-title {
+        @apply text-3xl;
+    }
+
+    /* Small screen split layout adjustments */
+    .hero-split-content {
+        @apply px-6;
+    }
+    
+    .hero-title {
+        @apply text-2xl;
+    }
+    
+    .hero-pill {
+        @apply text-base px-4 py-1.5;
+    }
+    
+    .nav-toggle {
+        @apply top-4 left-4 w-10 h-10;
+    }
+
+    .feature-card {
+        width: 220px;
+    }
+}
+
+/* Force blue colors for all elements using primary colors */
+.text-primary { color: #2b6cb0 !important; }
+.bg-primary { background-color: #2b6cb0 !important; }
+.border-primary { border-color: #2b6cb0 !important; }
+.bg-primary-light { background-color: #ebf4ff !important; }
+.text-primary-light { color: #ebf4ff !important; }
+.bg-primary-dark { background-color: #1e4e8c !important; }
+.text-primary-dark { color: #1e4e8c !important; }
+
+/* Hero pill specific styles */
+.hero-pill { 
+    background-color: #ebf4ff !important; 
+    color: #2b6cb0 !important; 
+}
+
+/* Gradients and special elements */
+.bg-gradient-to-r.from-transparent.via-primary.to-transparent {
+    background: linear-gradient(to right, transparent, #2b6cb0, transparent) !important;
+}
+
+/* Fix for specific Tailwind classes if still needed */
+.bg-purple-100, .bg-purple-200, .bg-purple-300 { background-color: #ebf4ff !important; }
+.bg-purple-400, .bg-purple-500, .bg-purple-600 { background-color: #2b6cb0 !important; }
+.bg-purple-700, .bg-purple-800, .bg-purple-900 { background-color: #1e4e8c !important; }
+
+.text-purple-100, .text-purple-200, .text-purple-300 { color: #ebf4ff !important; }
+.text-purple-400, .text-purple-500, .text-purple-600 { color: #2b6cb0 !important; }
+.text-purple-700, .text-purple-800, .text-purple-900 { color: #1e4e8c !important; }
+
+.border-purple-100, .border-purple-200, .border-purple-300 { border-color: #ebf4ff !important; }
+.border-purple-400, .border-purple-500, .border-purple-600 { border-color: #2b6cb0 !important; }
+.border-purple-700, .border-purple-800, .border-purple-900 { border-color: #1e4e8c !important; }
+
+/* Fix for hover states */
+.hover\:bg-primary:hover { background-color: #2b6cb0 !important; }
+.hover\:bg-primary-dark:hover { background-color: #1e4e8c !important; }
+.hover\:text-primary:hover { color: #2b6cb0 !important; }
+.hover\:text-primary-dark:hover { color: #1e4e8c !important; }
+.hover\:border-primary:hover { border-color: #2b6cb0 !important; }
+
+/* Fix for group hover states */
+.group:hover .group-hover\:text-primary { color: #2b6cb0 !important; }
+
+/* Any potential inline SVGs with purple */
+svg [fill="#5e35b1"], svg [fill="#4527a0"], svg [fill="#ede7f6"] {
+    fill: #2b6cb0 !important;
+}
+
+/* Fix for the purple in the welcome pill seen in your screenshot */
+.hero-split-content .hero-pill {
+    background-color: #ebf4ff !important;
+    color: #2b6cb0 !important;
+}
+
+/* Fix any potential direct RGB/RGBA colors that might be purple */
+[style*="rgb(94, 53, 177)"], [style*="rgb(69, 39, 160)"], [style*="rgb(237, 231, 246)"] {
+    color: #2b6cb0 !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+/* Fix for any potential link colors */
+a:not([class]) {
+    color: #2b6cb0 !important;
+}
+
+/* For the specific welcome pill in your screenshot */
+[class*="welcome"] {
+    background-color: #ebf4ff !important;
+    color: #2b6cb0 !important;
+}
+
+/* Fix for any navigation elements */
+.nav-links a:hover {
+    color: #2b6cb0 !important;
+}
+
+/* Fix for primary text elements */
+h1 .text-primary, h2 .text-primary, h3 .text-primary, span.text-primary {
+    color: #2b6cb0 !important;
+}
+
+/* Fix for the Explore Portfolios button */
+.hero-button, 
+a[href*="portfolios.index"] {
+    background-color: #2b6cb0 !important;
+    max-width: 240px !important; /* Makes the button narrower */
+    width: auto !important;
+}
+
+/* Fix hover state specifically */
+.hero-button:hover,
+a[href*="portfolios.index"]:hover {
+    background-color: #1e4e8c !important; /* Darker blue on hover */
+}
+
+/* Another approach targeting the exact button */
+.hero-split-content .hero-button,
+.hero-split-content a[href*="portfolios.index"] {
+    background-color: #2b6cb0 !important;
+    max-width: 240px !important;
+}
+
+.hero-split-content .hero-button:hover,
+.hero-split-content a[href*="portfolios.index"]:hover {
+    background-color: #1e4e8c !important;
+}
+
+/* Set any text in CTA to white or blue */
+.py-16.relative.overflow-hidden h2,
+.py-16.relative.overflow-hidden p {
+    color: #ffffff !important; /* White text */
+}
+
+.py-16.relative.overflow-hidden a.bg-white {
+    color: #2b6cb0 !important; /* Blue text on white button */
+}
+
+.py-16.relative.overflow-hidden a.bg-transparent {
+    color: #ffffff !important; /* White text on transparent button */
+    border-color: #ffffff !important; /* White border */
+}
+
+/* Ensure rotated wave divider doesn't get animation conflicts */
+.wave-divider.transform.rotate-180 {
+    transform: rotate(180deg) !important; /* Force this transform to take precedence */
+    opacity: 1 !important; /* Ensure always visible */
+    transition: none !important; /* Disable animations */
+}
+
+/* Additional protection for the divider */
+.wave-divider.no-reveal {
+    opacity: 1 !important;
+    transform: rotate(180deg) !important;
+    animation: none !important;
+    transition: none !important;
+}

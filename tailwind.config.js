@@ -13,6 +13,16 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                // Add these new font families
+                'roboto-condensed': ['Roboto Condensed', 'sans-serif'],
+                'dm-serif': ['DM Serif Text', 'serif'],
+                'meie-script': ['Meie Script', 'cursive'],
+            },
+            // Add Truki Lite custom colors
+            colors: {
+                'primary': '#6a1b9a',
+                'primary-dark': '#4a148c',
+                'primary-light': '#f3e5f5',
             },
         },
     },
