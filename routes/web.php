@@ -9,3 +9,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 Route::resource('portfolios', PortfolioController::class);
+
+Route::get('/lore', function () {
+    return view('lore');
+})->name('lore');
+
