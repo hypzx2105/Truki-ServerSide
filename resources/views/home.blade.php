@@ -112,7 +112,7 @@
                         narrative of your growth, a testament to your vision, and a bridge to opportunities that 
                         resonate with your unique voice.
                     </p>
-                    <a href="/create-portfolio" 
+                    <a href="/portfolios/create" 
                        class="inline-flex items-center bg-primary hover:bg-primary-dark text-white font-semibold py-2 px-6 rounded-full transition-all duration-300 group">
                         <span class="group-hover:pr-2 transition-all duration-300">Begin Your Journey</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-0 group-hover:opacity-100 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -318,36 +318,186 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @for ($i = 1; $i <= 6; $i++)
-                    <div class="portfolio-card bg-white rounded-lg overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md relative hover:-translate-y-1">
-                        <!-- Decorative Corners -->
-                        <div class="corner-bottom-right"></div>
-                        <span class="star-corner-tl absolute top-1 left-1 text-primary opacity-30 text-sm">✦</span>
-                        <span class="star-corner-br absolute bottom-1 right-1 text-primary opacity-30 text-sm">✦</span>
-                        
-                        <div class="h-48 overflow-hidden relative group">
-    <img src="{{ asset('images/ningning.jpg') }}" alt="Portfolio Preview" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105">
-    <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+    <!-- Portfolio 1: Mireya Quinn -->
+    <div class="portfolio-card bg-white rounded-lg overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md relative hover:-translate-y-1">
+        <!-- Decorative Corners -->
+        <div class="corner-bottom-right"></div>
+        <span class="star-corner-tl absolute top-1 left-1 text-primary opacity-30 text-sm">✦</span>
+        <span class="star-corner-br absolute bottom-1 right-1 text-primary opacity-30 text-sm">✦</span>
+        
+        <div class="h-80 overflow-hidden relative group">
+            <img src="{{ asset('images/mireya.jpg') }}" alt="Mireya Quinn" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+        </div>
+        
+        <div class="p-4 relative">
+            <h3 class="text-lg font-bold text-gray-800">The Painter</h3>
+            <p class="text-gray-600 text-sm mb-3">by Mireya Quinn</p>
+            
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Mixed Media</span>
+                <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Conceptual</span>
+            </div>
+            
+            <a href="#" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
+                <span class="group-hover:underline">Discover More</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Portfolio 2: Zanele K. Muse -->
+    <div class="portfolio-card bg-white rounded-lg overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md relative hover:-translate-y-1">
+        <!-- Decorative Corners -->
+        <div class="corner-bottom-right"></div>
+        <span class="star-corner-tl absolute top-1 left-1 text-primary opacity-30 text-sm">✦</span>
+        <span class="star-corner-br absolute bottom-1 right-1 text-primary opacity-30 text-sm">✦</span>
+        
+        <div class="h-80 overflow-hidden relative group">
+            <img src="{{ asset('images/zanele.jpg') }}" alt="Zanele K. Muse" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+        </div>
+        
+        <div class="p-4 relative">
+            <h3 class="text-lg font-bold text-gray-800">The Fabric Whisperer</h3>
+            <p class="text-gray-600 text-sm mb-3">by Zanele K. Muse</p>
+            
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Textiles</span>
+                <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Wearable Art</span>
+            </div>
+            
+            <a href="#" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
+                <span class="group-hover:underline">Discover More</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Portfolio 3: Cassien Vale -->
+    <div class="portfolio-card bg-white rounded-lg overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md relative hover:-translate-y-1">
+        <!-- Decorative Corners -->
+        <div class="corner-bottom-right"></div>
+        <span class="star-corner-tl absolute top-1 left-1 text-primary opacity-30 text-sm">✦</span>
+        <span class="star-corner-br absolute bottom-1 right-1 text-primary opacity-30 text-sm">✦</span>
+        
+        <div class="h-80 overflow-hidden relative group">
+            <img src="{{ asset('images/cassien.jpg') }}" alt="Cassien Vale" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+        </div>
+        
+        <div class="p-4 relative">
+            <h3 class="text-lg font-bold text-gray-800">The Sonic Cartographer</h3>
+            <p class="text-gray-600 text-sm mb-3">by Cassien Vale</p>
+            
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Sound Design</span>
+                <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Ambient</span>
+            </div>
+            
+            <a href="#" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
+                <span class="group-hover:underline">Discover More</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Portfolio 4: Leif Ono -->
+    <div class="portfolio-card bg-white rounded-lg overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md relative hover:-translate-y-1">
+        <!-- Decorative Corners -->
+        <div class="corner-bottom-right"></div>
+        <span class="star-corner-tl absolute top-1 left-1 text-primary opacity-30 text-sm">✦</span>
+        <span class="star-corner-br absolute bottom-1 right-1 text-primary opacity-30 text-sm">✦</span>
+        
+        <div class="h-80 overflow-hidden relative group">
+            <img src="{{ asset('images/leif.jpg') }}" alt="Leif Ono" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+        </div>
+        
+        <div class="p-4 relative">
+            <h3 class="text-lg font-bold text-gray-800">The Mythmaker</h3>
+            <p class="text-gray-600 text-sm mb-3">by Leif Ono</p>
+            
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Writing</span>
+                <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Animation</span>
+            </div>
+            
+            <a href="#" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
+                <span class="group-hover:underline">Discover More</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Portfolio 5: Nova Adebayo -->
+    <div class="portfolio-card bg-white rounded-lg overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md relative hover:-translate-y-1">
+        <!-- Decorative Corners -->
+        <div class="corner-bottom-right"></div>
+        <span class="star-corner-tl absolute top-1 left-1 text-primary opacity-30 text-sm">✦</span>
+        <span class="star-corner-br absolute bottom-1 right-1 text-primary opacity-30 text-sm">✦</span>
+        
+        <div class="h-80 overflow-hidden relative group">
+            <img src="{{ asset('images/nova.jpg') }}" alt="Nova Adebayo" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+        </div>
+        
+        <div class="p-4 relative">
+            <h3 class="text-lg font-bold text-gray-800">The Interface Poet</h3>
+            <p class="text-gray-600 text-sm mb-3">by Nova Adebayo</p>
+            
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Interactive</span>
+                <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Digital Art</span>
+            </div>
+            
+            <a href="#" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
+                <span class="group-hover:underline">Discover More</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Portfolio 6: Elio Strauss -->
+    <div class="portfolio-card bg-white rounded-lg overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md relative hover:-translate-y-1">
+        <!-- Decorative Corners -->
+        <div class="corner-bottom-right"></div>
+        <span class="star-corner-tl absolute top-1 left-1 text-primary opacity-30 text-sm">✦</span>
+        <span class="star-corner-br absolute bottom-1 right-1 text-primary opacity-30 text-sm">✦</span>
+        
+        <div class="h-80 overflow-hidden relative group">
+            <img src="{{ asset('images/elio.jpg') }}" alt="Elio Strauss" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105">
+            <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+        </div>
+        
+        <div class="p-4 relative">
+            <h3 class="text-lg font-bold text-gray-800">The Digital Forager</h3>
+            <p class="text-gray-600 text-sm mb-3">by Elio Strauss</p>
+            
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Digital Collage</span>
+                <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Archival</span>
+            </div>
+            
+            <a href="#" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
+                <span class="group-hover:underline">Discover More</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
 </div>
-                        
-                        <div class="p-4 relative">
-                            <h3 class="text-lg font-bold text-gray-800">The Art of {{ ['Whimsy', 'Elegance', 'Innovation', 'Storytelling', 'Vision', 'Passion'][$i-1] }}</h3>
-                            <p class="text-gray-600 text-sm mb-3">by {{ ['Aurora', 'Lumiere', 'Solstice', 'Nocturne', 'Sonnet', 'Cadence'][$i-1] }} Studios</p>
-                            
-                            <div class="flex flex-wrap gap-2 mb-3">
-                                <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">{{ ['Mixed Media', 'Digital', 'Watercolor', 'Typography', 'Photography', 'Sculpture'][$i-1] }}</span>
-                                <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">{{ ['Conceptual', 'Minimalist', 'Abstract', 'Narrative', 'Experimental', 'Contemporary'][$i-1] }}</span>
-                            </div>
-                            
-                            <a href="#" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
-                                <span class="group-hover:underline">Discover More</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    @endfor
                 </div>
 
                 <div class="text-center mt-10">
