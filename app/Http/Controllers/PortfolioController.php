@@ -18,7 +18,7 @@ class PortfolioController extends Controller
                       ->orWhere('content', 'like', "%{$search}%");
             })
             ->latest()
-            ->get();
+            ->paginate(9); // Changed from get() to paginate(9)
 
         return view('portfolios.index', compact('portfolios', 'search'));
     }
@@ -29,30 +29,30 @@ class PortfolioController extends Controller
     }
 
     public function store(Request $request)
-{
-    // Temporarily disable foreign key checks
-    \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-    
-    $validated = $request->validate([
-        'title' => 'required|string|max:255',
-        'content' => 'required|string',
-        'media' => 'nullable|image|max:2048',
-    ]);
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'media' => 'nullable|image|max:2048',
+        ]);
 
-    if ($request->hasFile('media')) {
-        $validated['media_url'] = $request->file('media')->store('portfolios', 'public');
+        if ($request->hasFile('media')) {
+            $validated['media_url'] = $request->file('media')->store('portfolios', 'public');
+        }
+
+        // Disable foreign key checks temporarily
+        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        
+        // Add a user_id (even if it doesn't exist)
+        $validated['user_id'] = 1;
+        
+        Portfolio::create($validated);
+        
+        // Re-enable foreign key checks
+        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        return redirect()->route('portfolios.index')->with('success', 'Portfolio created!');
     }
-    
-    // Add a user_id (even if it doesn't exist)
-    $validated['user_id'] = 1;
-
-    Portfolio::create($validated);
-    
-    // Re-enable foreign key checks
-    \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
-    return redirect()->route('portfolios.index')->with('success', 'Portfolio created!');
-}
 
     public function show(Portfolio $portfolio)
     {
