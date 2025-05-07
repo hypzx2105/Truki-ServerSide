@@ -1,0 +1,483 @@
+/* Portfolio Show Page Styles */
+
+/* Wrapper for the entire content */
+.portfolio-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Keep the original container as is */
+.portfolio-show-container {
+    max-width: 100%; /* Change this from 900px */
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+    position: relative;
+}
+
+/* Make sure the card has proper width */
+.portfolio-card {
+    width: 100%;
+}
+
+/* .portfolio-show-container {
+    width: 900px;
+    margin: 3rem auto;
+    padding: 0;
+    position: relative;
+} */
+
+/* Decorative floating elements */
+.portfolio-floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.portfolio-float {
+    position: absolute;
+    opacity: 0.2;
+    animation: float 8s ease-in-out infinite;
+}
+
+.portfolio-float-1 {
+    top: 5%;
+    left: -30px;
+    font-size: 1.5rem;
+    color: #2b6cb0;
+    animation-delay: 0s;
+}
+
+.portfolio-float-2 {
+    bottom: 10%;
+    right: -30px;
+    font-size: 1.8rem;
+    color: #2b6cb0;
+    animation-delay: 2s;
+}
+
+.portfolio-float-3 {
+    top: 50%;
+    right: -20px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #2b6cb0;
+    animation-delay: 1s;
+}
+
+.portfolio-float-4 {
+    bottom: 30%;
+    left: -25px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #2b6cb0;
+    animation-delay: 3s;
+}
+
+/* Card styling */
+.portfolio-card {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(43, 108, 176, 0.15);
+}
+
+/* Header with title */
+.portfolio-header {
+    padding: 2rem 2.5rem;
+    position: relative;
+    border-bottom: 1px solid #f0f4ff;
+}
+
+.portfolio-title {
+    font-size: 2.25rem;
+    color: #2b6cb0;
+    font-family: "DM Serif Text", serif;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    position: relative;
+    display: inline-block;
+}
+
+.portfolio-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(to right, #2b6cb0, transparent);
+}
+
+.portfolio-author {
+    color: #4a5568;
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+/* Star decoration in header corners */
+.portfolio-corner-star {
+    position: absolute;
+    color: #2b6cb0;
+    opacity: 0.3;
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.portfolio-corner-tl {
+    top: 1rem;
+    left: 1rem;
+    transform: rotate(-15deg);
+}
+
+.portfolio-corner-br {
+    bottom: 1rem;
+    right: 1rem;
+    transform: rotate(15deg);
+}
+
+.portfolio-card:hover .portfolio-corner-star {
+    opacity: 0.6;
+    transform: rotate(0deg) scale(1.2);
+}
+
+/* Image container */
+.portfolio-image-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.portfolio-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-card:hover .portfolio-image {
+    transform: scale(1.05);
+}
+
+.portfolio-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(43, 108, 176, 0.05);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-image-overlay {
+    opacity: 1;
+}
+
+/* Content */
+.portfolio-content {
+    padding: 2.5rem;
+}
+
+.portfolio-text {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #4a5568;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+.portfolio-text::first-letter {
+    font-size: 2.5rem;
+    font-family: "DM Serif Text", serif;
+    float: left;
+    line-height: 1;
+    padding-right: 8px;
+    color: #2b6cb0;
+}
+
+/* Action buttons */
+.portfolio-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.portfolio-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-btn-edit {
+    background-color: #f6e05e;
+    color: #744210;
+}
+
+.portfolio-btn-edit:hover {
+    background-color: #ecc94b;
+    transform: translateY(-2px);
+}
+
+.portfolio-btn-delete {
+    background-color: #fc8181;
+    color: #742a2a;
+}
+
+.portfolio-btn-delete:hover {
+    background-color: #f56565;
+    transform: translateY(-2px);
+}
+
+/* Button shine effect */
+.portfolio-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    transition: transform 0.7s ease;
+    opacity: 0;
+}
+
+.portfolio-btn:hover::after {
+    transform: rotate(30deg) translate(50%, 50%);
+    opacity: 1;
+}
+
+/* Back button */
+.portfolio-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #2b6cb0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
+}
+
+.portfolio-back svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-back:hover {
+    color: #1e4e8c;
+    text-decoration: underline;
+}
+
+.portfolio-back:hover svg {
+    transform: translateX(-3px);
+}
+
+/* Delete confirmation modal */
+.portfolio-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.portfolio-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.portfolio-modal {
+    width: 100%;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.portfolio-modal-overlay.active .portfolio-modal {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.portfolio-modal-header {
+    padding: 1.5rem;
+    background-color: #fee2e2;
+    position: relative;
+    text-align: center;
+}
+
+.portfolio-modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #9b2c2c;
+}
+
+.portfolio-modal-icon {
+    width: 3rem;
+    height: 3rem;
+    background-color: #fff5f5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: #f56565;
+    font-size: 1.5rem;
+}
+
+.portfolio-modal-content {
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.portfolio-modal-message {
+    color: #4a5568;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.portfolio-modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.portfolio-modal-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.portfolio-modal-btn-cancel {
+    background-color: #e2e8f0;
+    color: #4a5568;
+}
+
+.portfolio-modal-btn-cancel:hover {
+    background-color: #cbd5e0;
+}
+
+.portfolio-modal-btn-confirm {
+    background-color: #f56565;
+    color: white;
+}
+
+.portfolio-modal-btn-confirm:hover {
+    background-color: #e53e3e;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .portfolio-show-container {
+        margin: 2rem 1rem;
+    }
+    
+    .portfolio-header {
+        padding: 1.5rem 2rem;
+    }
+    
+    .portfolio-title {
+        font-size: 1.75rem;
+    }
+    
+    .portfolio-content {
+        padding: 2rem;
+    }
+    
+    .portfolio-text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .portfolio-show-container {
+        margin: 1.5rem 1rem;
+    }
+    
+    .portfolio-header {
+        padding: 1.25rem 1.5rem;
+    }
+    
+    .portfolio-title {
+        font-size: 1.5rem;
+    }
+    
+    .portfolio-content {
+        padding: 1.5rem;
+    }
+    
+    .portfolio-actions {
+        flex-direction: column;
+    }
+    
+    .portfolio-btn {
+        width: 100%;
+    }
+}
+
+/* Animation for the modal */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes zoomIn {
+    0% { transform: scale(0.95); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.portfolio-modal-overlay.active {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.portfolio-modal-overlay.active .portfolio-modal {
+    animation: zoomIn 0.3s ease forwards;
+}
