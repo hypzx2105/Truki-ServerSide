@@ -27,7 +27,7 @@
                 <div class="footer-links-column">
                     <h3 class="footer-heading">Navigation</h3>
                     <a href="{{ url('/') }}" class="footer-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
-                    <a href="#" class="footer-link {{ request()->is('about*') ? 'active' : '' }}">About</a>
+                    <a href="/about" class="footer-link {{ request()->is('about*') ? 'active' : '' }}">About</a>
                 </div>
                 
                 <div class="footer-links-column">

@@ -1,0 +1,512 @@
+/* About Page Styles */
+
+/* Hero Section */
+.about-hero {
+    position: relative;
+    height: 75vh;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNmMGY0ZmYiPjwvcmVjdD4KPC9zdmc+');
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.about-hero-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.about-star {
+    position: absolute;
+    color: #2b6cb0;
+    opacity: 0.4;
+    font-size: 2rem;
+    transition: all 0.5s ease;
+}
+
+.about-star-1 {
+    top: 15%;
+    left: 10%;
+}
+
+.about-star-2 {
+    top: 30%;
+    right: 15%;
+}
+
+.about-star-3 {
+    bottom: 20%;
+    left: 20%;
+}
+
+.about-star-4 {
+    bottom: 40%;
+    right: 8%;
+}
+
+.about-star-5 {
+    top: 50%;
+    left: 35%;
+}
+
+.about-hero-content {
+    text-align: center;
+    max-width: 800px;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.about-welcome-badge {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2rem;
+    transform: perspective(800px);
+    transition: transform 0.5s ease;
+}
+
+.about-welcome-badge-bg {
+    position: absolute;
+    inset: -5px -10px;
+    background-color: #ebf4ff;
+    border-radius: 9999px;
+    transform: rotate(-2deg) scale(1.05);
+    box-shadow: 0 6px 12px rgba(43, 108, 176, 0.1);
+    transition: all 0.5s ease;
+    border: 2px solid rgba(43, 108, 176, 0.1);
+}
+
+.about-welcome-badge-content {
+    position: relative;
+    background-color: #ebf4ff;
+    color: #2b6cb0;
+    padding: 0.8rem 2.5rem;
+    border-radius: 9999px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    transform: rotate(2deg);
+    border: 2px solid rgba(43, 108, 176, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.about-welcome-star {
+    font-size: 1.25rem;
+    display: inline-block;
+    transition: transform 0.8s ease;
+}
+
+/* Hover animations */
+.about-welcome-badge:hover {
+    transform: perspective(800px) translateY(-5px);
+}
+
+.about-welcome-badge:hover .about-welcome-badge-bg {
+    transform: rotate(-3deg) scale(1.08);
+    box-shadow: 0 8px 16px rgba(43, 108, 176, 0.15);
+}
+
+.about-welcome-badge:hover .about-welcome-badge-content {
+    transform: rotate(3deg);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.about-welcome-badge:hover .about-welcome-star {
+    transform: rotate(360deg);
+}
+
+.about-hero-title {
+    font-size: 3.5rem;
+    color: #1a202c;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.about-hero-description {
+    font-size: 1.25rem;
+    color: #4a5568;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Tale Section */
+.tale-section {
+    padding: 5rem 0;
+    background-color: #ffffff;
+}
+
+.tale-content {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    padding: 3rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    position: relative;
+    border-left: 4px solid #2b6cb0;
+}
+
+.tale-title {
+    font-size: 2.5rem;
+    color: #1a202c;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.tale-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #2b6cb0, transparent);
+    margin: 1rem auto 0;
+}
+
+.tale-paragraphs {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tale-paragraph {
+    font-size: 1.125rem;
+    color: #4a5568;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.tale-paragraph.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Philosophy Section */
+.philosophy-section {
+    padding: 5rem 0;
+    background-color: #f9f9f9;
+}
+
+.philosophy-title {
+    font-size: 2.5rem;
+    color: #1a202c;
+    margin-bottom: 1rem;
+}
+
+.philosophy-subtitle {
+    font-size: 1.25rem;
+    color: #4a5568;
+    margin-bottom: 3rem;
+}
+
+.philosophy-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.philosophy-card {
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    position: relative;
+    border-left: 4px solid #2b6cb0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.philosophy-card.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.philosophy-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(43, 108, 176, 0.15);
+}
+
+.philosophy-icon {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ebf4ff;
+    color: #2b6cb0;
+    font-size: 1.75rem;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.philosophy-card:hover .philosophy-icon {
+    transform: rotate(12deg) scale(1.1);
+    background-color: rgba(43, 108, 176, 0.2);
+    box-shadow: 0 0 12px rgba(43, 108, 176, 0.3);
+}
+
+.philosophy-card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.philosophy-card:hover .philosophy-card-title {
+    color: #2b6cb0;
+    transform: translateX(3px);
+}
+
+.philosophy-card-text {
+    font-size: 1rem;
+    color: #4a5568;
+    line-height: 1.6;
+}
+
+.card-highlight {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #2b6cb0;
+    transition: width 0.3s ease;
+}
+
+.philosophy-card:hover .card-highlight {
+    width: 100%;
+}
+
+/* Creators Section */
+.creators-section {
+    padding: 6rem 0;
+    background-color: #ffffff;
+}
+
+.creators-title {
+    font-size: 2.5rem;
+    color: #1a202c;
+    margin-bottom: 1rem;
+}
+
+.creators-subtitle {
+    font-size: 1.25rem;
+    color: #4a5568;
+    margin-bottom: 3rem;
+}
+
+.creators-profiles {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    margin-top: 4rem;
+}
+
+.creator-profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.creator-profile.reverse {
+    flex-direction: row-reverse;
+}
+
+.creator-profile.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.creator-image-container {
+    flex: 0 0 35%;
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+}
+
+.creator-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: all 0.5s ease;
+}
+
+.creator-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(43, 108, 176, 0), rgba(43, 108, 176, 0.2));
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.creator-profile:hover .creator-image-container {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(43, 108, 176, 0.2);
+}
+
+.creator-profile:hover .creator-image {
+    transform: scale(1.05);
+}
+
+.creator-profile:hover .creator-image-overlay {
+    opacity: 1;
+}
+
+.creator-details {
+    flex: 1;
+}
+
+.creator-name-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.creator-badge-star {
+    color: #2b6cb0;
+    font-size: 1.25rem;
+    opacity: 0.6;
+    transition: transform 0.8s ease, opacity 0.5s ease;
+}
+
+.creator-profile:hover .creator-badge-star {
+    transform: rotate(360deg);
+    opacity: 1;
+}
+
+.creator-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d3748;
+}
+
+.creator-role {
+    font-size: 1.125rem;
+    color: #2b6cb0;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+.creator-bio {
+    font-size: 1.125rem;
+    color: #4a5568;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.creator-signature {
+    font-size: 1rem;
+    color: #718096;
+    font-style: italic;
+    text-align: right;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-hero-title {
+        font-size: 2.5rem;
+    }
+
+    .tale-content {
+        padding: 2rem;
+    }
+
+    .tale-title {
+        font-size: 2rem;
+    }
+
+    .creator-profile, 
+    .creator-profile.reverse {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .creator-image-container {
+        flex: 0 0 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
+    .creator-signature {
+        text-align: center;
+    }
+
+    .philosophy-cards {
+        gap: 1.5rem;
+    }
+
+    .creator-name-badge {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .about-hero {
+        height: 65vh;
+    }
+
+    .about-hero-title {
+        font-size: 2rem;
+    }
+
+    .about-welcome-badge-content {
+        padding: 0.6rem 1.8rem;
+        font-size: 1rem;
+    }
+
+    .tale-title {
+        font-size: 1.75rem;
+    }
+
+    .philosophy-card {
+        min-width: 100%;
+    }
+
+    .creators-profiles {
+        gap: 3rem;
+    }
+}
+
+/* Animation for the tale paragraphs to stagger in */
+.tale-paragraph:nth-child(1) { transition-delay: 0.1s; }
+.tale-paragraph:nth-child(2) { transition-delay: 0.2s; }
+.tale-paragraph:nth-child(3) { transition-delay: 0.3s; }
+.tale-paragraph:nth-child(4) { transition-delay: 0.4s; }
+.tale-paragraph:nth-child(5) { transition-delay: 0.5s; }
+
+/* Animation for philosophy cards */
+.philosophy-card:nth-child(1) { transition-delay: 0.1s; }
+.philosophy-card:nth-child(2) { transition-delay: 0.3s; }
+.philosophy-card:nth-child(3) { transition-delay: 0.5s; }

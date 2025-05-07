@@ -23,7 +23,7 @@
                 </a>
             </li>
             <li class="group">
-                <a href="#" class="flex items-center {{ request()->is('about*') ? 'text-primary' : '' }}">
+                <a href="/about class="flex items-center {{ request()->is('about*') ? 'text-primary' : '' }}">
                     <span class="mr-3 opacity-0 group-hover:opacity-100 transition-all duration-300">✦</span>
                     <span>About</span>
                 </a>
@@ -90,7 +90,7 @@
                     <span class="navbar-link-underline"></span>
                     <span class="navbar-link-star">✦</span>
                 </a>
-                <a href="#" class="navbar-link group {{ request()->is('about*') ? 'active' : '' }}">
+                <a href="/about" class="navbar-link group {{ request()->is('about*') ? 'active' : '' }}">
                     <span class="navbar-link-text">About</span>
                     <span class="navbar-link-underline"></span>
                     <span class="navbar-link-star">✦</span>
@@ -121,7 +121,7 @@
     <div class="navbar-mobile-menu">
         <a href="{{ url('/') }}" class="navbar-mobile-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
         <a href="{{ url('/portfolios') }}" class="navbar-mobile-link {{ request()->is('portfolios*') ? 'active' : '' }}">Portfolios</a>
-        <a href="#" class="navbar-mobile-link {{ request()->is('about*') ? 'active' : '' }}">About</a>
+        <a href="/about" class="navbar-mobile-link {{ request()->is('about*') ? 'active' : '' }}">About</a>
         <a href="#" class="navbar-mobile-link {{ request()->is('contact*') ? 'active' : '' }}">Contact</a>
     </div>
 </nav>
