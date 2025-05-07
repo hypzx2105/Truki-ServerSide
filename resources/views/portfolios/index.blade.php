@@ -8,16 +8,26 @@
 
 @section('content')
     <div class="portfolio-index-container">
+        <div class="portfolio-index-header">
+            <h1 class="portfolio-index-title">Portfolios</h1>
+            <a href="{{ route('portfolios.create') }}" class="create-portfolio-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5v14M5 12h14"></path>
+                </svg>
+                Create New Portfolio
+            </a>
+        </div>
+
         <form method="GET" action="{{ route('portfolios.index') }}" class="portfolio-search">
-    <input type="text" name="search" placeholder="Search portfolios by title or content..." 
-           value="{{ request('search') }}" class="portfolio-search-input">
-    <span class="portfolio-search-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="M21 21l-4.35-4.35"></path>
-        </svg>
-    </span>
-</form>
+            <input type="text" name="search" placeholder="Search portfolios by title or content..." 
+                   value="{{ request('search') }}" class="portfolio-search-input">
+            <span class="portfolio-search-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="M21 21l-4.35-4.35"></path>
+                </svg>
+            </span>
+        </form>
 
         @if(session('success'))
             <div class="success-message">
@@ -72,20 +82,16 @@
                     </div>
                 @endforeach
             </div>
+
+            <!-- Pagination -->
+            <div class="portfolio-pagination">
+                {{ $portfolios->links() }}
+            </div>
         @else
             <div class="empty-state">
                 No portfolios found. Create your first portfolio to get started!
             </div>
         @endif
-
-        <div class="text-center mt-8">
-            <a href="{{ route('portfolios.create') }}" class="create-portfolio-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 5v14M5 12h14"></path>
-                </svg>
-                Create New Portfolio
-            </a>
-        </div>
     </div>
 
     <!-- Delete Confirmation Modal -->

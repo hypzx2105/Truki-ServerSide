@@ -1,88 +1,210 @@
 /* Portfolio Show Page Styles */
 
-/* Wrapper for the entire content */
+/* Add these styles to your existing CSS in show.blade.php */
+
+/* Floating stars decoration */
+.portfolio-floating-star {
+    position: absolute;
+    color: rgba(43, 108, 176, 0.15);
+    pointer-events: none;
+    z-index: -1;
+    animation: portfolio-float 8s infinite ease-in-out;
+    transition: all 0.3s ease;
+}
+
+@keyframes portfolio-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(5deg); }
+}
+
+/* Improved portfolio container with relative positioning */
+.portfolio-create-container {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 4rem;
+    background-image: radial-gradient(circle at 50% 50%, rgba(243, 244, 246, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%);
+}
+
+/* Enhanced first letter styling */
+.portfolio-text::first-letter {
+    font-size: 3.5rem;
+    font-family: "DM Serif Text", serif;
+    float: left;
+    line-height: 0.8;
+    padding-right: 12px;
+    padding-top: 4px;
+    color: #2b6cb0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Smooth transition for image */
+.portfolio-image {
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* Enhanced form stars with animation */
+.form-stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.form-star {
+    position: absolute;
+    color: rgba(43, 108, 176, 0.2);
+    animation: star-pulse 4s infinite ease-in-out;
+}
+
+.form-star-1 {
+    top: 15%;
+    left: 8%;
+    font-size: 1.8rem;
+    animation-delay: 0s;
+}
+
+.form-star-2 {
+    bottom: 20%;
+    right: 10%;
+    font-size: 2.2rem;
+    animation-delay: 1.5s;
+}
+
+.form-star-3 {
+    top: 60%;
+    left: 15%;
+    font-size: 1.5rem;
+    animation-delay: 0.8s;
+}
+
+@keyframes star-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.2; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+}
+
+/* Enhanced title with subtle animation */
+.portfolio-create-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.portfolio-create-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #2b6cb0, transparent);
+    transition: width 0.5s ease;
+}
+
+.portfolio-header:hover .portfolio-create-title::after {
+    width: 100%;
+}
+
+/* Delete modal enhancements */
+.portfolio-modal-header {
+    padding: 1.5rem;
+    background-color: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: center;
+    position: relative;
+}
+
+.portfolio-modal-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #fc8181;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2d3748;
+}
+
+.portfolio-modal-content {
+    padding: 1.5rem;
+}
+
+.portfolio-modal-message {
+    text-align: center;
+    color: #4a5568;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.portfolio-modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.portfolio-modal-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.portfolio-modal-btn-cancel {
+    background-color: #e2e8f0;
+    color: #4a5568;
+}
+
+.portfolio-modal-btn-cancel:hover {
+    background-color: #cbd5e0;
+}
+
+.portfolio-modal-btn-confirm {
+    background-color: #fc8181;
+    color: white;
+}
+
+.portfolio-modal-btn-confirm:hover {
+    background-color: #f56565;
+    transform: translateY(-2px);
+}
+
+/* Set a consistent width for all portfolio pages */
 .portfolio-wrapper {
-    max-width: 1200px;
+    max-width: 1000px;
+    width: 100%;
     margin: 0 auto;
     position: relative;
 }
 
-/* Keep the original container as is */
 .portfolio-show-container {
-    max-width: 100%; /* Change this from 900px */
-    margin: 3rem auto;
-    padding: 0 1.5rem;
-    position: relative;
-}
-
-/* Make sure the card has proper width */
-.portfolio-card {
     width: 100%;
-}
-
-/* .portfolio-show-container {
-    width: 900px;
     margin: 3rem auto;
     padding: 0;
     position: relative;
-} */
-
-/* Decorative floating elements */
-.portfolio-floating-elements {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
 }
 
-.portfolio-float {
-    position: absolute;
-    opacity: 0.2;
-    animation: float 8s ease-in-out infinite;
-}
-
-.portfolio-float-1 {
-    top: 5%;
-    left: -30px;
-    font-size: 1.5rem;
-    color: #2b6cb0;
-    animation-delay: 0s;
-}
-
-.portfolio-float-2 {
-    bottom: 10%;
-    right: -30px;
-    font-size: 1.8rem;
-    color: #2b6cb0;
-    animation-delay: 2s;
-}
-
-.portfolio-float-3 {
-    top: 50%;
-    right: -20px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #2b6cb0;
-    animation-delay: 1s;
-}
-
-.portfolio-float-4 {
-    bottom: 30%;
-    left: -25px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: #2b6cb0;
-    animation-delay: 3s;
-}
-
-/* Card styling */
+/* Card styling - fixed width to match edit page */
 .portfolio-card {
+    width: 100%;
+    min-width: 100%;
     background-color: #ffffff;
     border-radius: 1rem;
     overflow: hidden;
@@ -90,6 +212,7 @@
     position: relative;
     z-index: 1;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 6px solid #2b6cb0;
 }
 
 .portfolio-card:hover {
@@ -157,23 +280,24 @@
     transform: rotate(0deg) scale(1.2);
 }
 
-/* Image container */
+/* Image container with fixed aspect ratio */
 .portfolio-image-container {
     width: 100%;
     overflow: hidden;
     position: relative;
+    max-height: none; /* Allow image to display at natural height */
 }
 
 .portfolio-image {
     width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-    object-position: center;
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+    object-fit: contain; /* Ensure entire image is visible without cropping */
     transition: transform 0.5s ease;
 }
 
 .portfolio-card:hover .portfolio-image {
-    transform: scale(1.05);
+    transform: scale(1.02); /* Subtle zoom effect on hover */
 }
 
 .portfolio-image-overlay {
@@ -232,6 +356,8 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
+    border: none;
 }
 
 .portfolio-btn-edit {
@@ -288,6 +414,7 @@
     font-weight: 500;
     transition: all 0.3s ease;
     margin-top: 1.5rem;
+    text-decoration: none;
 }
 
 .portfolio-back svg {
@@ -303,6 +430,60 @@
 
 .portfolio-back:hover svg {
     transform: translateX(-3px);
+}
+
+/* Decorative floating elements */
+.portfolio-floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.portfolio-float {
+    position: absolute;
+    opacity: 0.2;
+    animation: float 8s ease-in-out infinite;
+}
+
+.portfolio-float-1 {
+    top: 5%;
+    left: -30px;
+    font-size: 1.5rem;
+    color: #2b6cb0;
+    animation-delay: 0s;
+}
+
+.portfolio-float-2 {
+    bottom: 10%;
+    right: -30px;
+    font-size: 1.8rem;
+    color: #2b6cb0;
+    animation-delay: 2s;
+}
+
+.portfolio-float-3 {
+    top: 50%;
+    right: -20px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #2b6cb0;
+    animation-delay: 1s;
+}
+
+.portfolio-float-4 {
+    bottom: 30%;
+    left: -25px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #2b6cb0;
+    animation-delay: 3s;
 }
 
 /* Delete confirmation modal */
@@ -394,6 +575,8 @@
     font-weight: 600;
     font-size: 0.875rem;
     transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
 }
 
 .portfolio-modal-btn-cancel {
@@ -412,6 +595,12 @@
 
 .portfolio-modal-btn-confirm:hover {
     background-color: #e53e3e;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 /* Responsive adjustments */
@@ -461,23 +650,4 @@
     .portfolio-btn {
         width: 100%;
     }
-}
-
-/* Animation for the modal */
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-@keyframes zoomIn {
-    0% { transform: scale(0.95); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-.portfolio-modal-overlay.active {
-    animation: fadeIn 0.3s ease forwards;
-}
-
-.portfolio-modal-overlay.active .portfolio-modal {
-    animation: zoomIn 0.3s ease forwards;
 }
