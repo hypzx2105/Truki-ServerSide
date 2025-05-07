@@ -13,3 +13,8 @@ Route::get('/about', function () {
 
 
 Route::resource('portfolios', PortfolioController::class);
+
+Route::get('/lore', function () {
+    return view('lore');
+})->name('lore');
+

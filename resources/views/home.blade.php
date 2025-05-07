@@ -544,8 +544,9 @@
             <a href="/register" class="bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl" style="box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);">
                 Set Sail
             </a>
-            <a href="/about" class="bg-transparent hover:bg-white/10 text-white font-semibold py-3 px-10 rounded-full border-2 border-white transition-all duration-300 transform hover:scale-105" style="box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);">
-    Learn the Lore
+            <a href="{{ route('lore') }}" class="bg-transparent hover:bg-white/10 text-white font-semibold py-3 px-10 rounded-full border-2 border-white transition-all duration-300 transform hover:scale-105">
+                Learn the Lore
+            </a>            
 </a>
         </div>
     </div>
