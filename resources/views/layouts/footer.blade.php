@@ -33,7 +33,7 @@
                 <div class="footer-links-column">
                     <h3 class="footer-heading">Explore</h3>
                     <a href="{{ url('/portfolios') }}" class="footer-link {{ request()->is('portfolios*') ? 'active' : '' }}">Portfolios</a>
-                    <a href="#" class="footer-link {{ request()->is('contact*') ? 'active' : '' }}">Contact</a>
+                    <a href="/lore" class="footer-link {{ request()->is('lore*') ? 'active' : '' }}">Lore</a>
                 </div>
 
                 <div class="footer-links-column">
