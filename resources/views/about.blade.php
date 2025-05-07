@@ -3,6 +3,9 @@
 @section('title', 'About Us | Truki Lite')
 
 @section('content')
+<!-- Star Cursor Trail Container -->
+<div id="star-cursor-container" class="star-cursor-container"></div>
+
     <!-- Hero Section with Animated Elements -->
     <div class="about-hero">
         <div class="about-hero-stars">
@@ -42,6 +45,7 @@
 
     <!-- The Tale Section -->
     <div class="tale-section">
+        <div class="tale-bg-overlay"></div>
         <div class="container mx-auto px-4 max-w-4xl">
             <div class="tale-content corner-decoration">
                 <span class="star-corner-tl">✦</span>
@@ -125,6 +129,18 @@
                 </div>
             </div>
         </div>
+        <div class="floating-element" data-speed="0.1">✦</div>
+    <!-- Floating Background Elements (10+ stars/symbols) -->
+<div class="floating-element" data-speed="0.05" data-size="1.2">✧</div>
+<div class="floating-element" data-speed="0.1" data-size="1.5">✦</div>
+<div class="floating-element" data-speed="0.15" data-size="1.8">✷</div>
+<div class="floating-element" data-speed="0.2" data-size="2.0">✺</div>
+<div class="floating-element" data-speed="0.1" data-size="1.3">✵</div>
+<div class="floating-element" data-speed="0.25" data-size="1.7">✳</div>
+<div class="floating-element" data-speed="0.18" data-size="1.4">✸</div>
+<div class="floating-element" data-speed="0.12" data-size="1.6">✹</div>
+<div class="floating-element" data-speed="0.3" data-size="2.2">❂</div>
+<div class="floating-element" data-speed="0.22" data-size="1.9">⚝</div>
     </div>
 
     <!-- Wave Divider Inverted -->
@@ -145,7 +161,7 @@
             <div class="creators-profiles">
                 <div class="creator-profile">
                     <div class="creator-image-container">
-                        <img src="{{ asset('images/ningning.jpg') }}" alt="Faery" class="creator-image">
+                        <img src="https://i.pinimg.com/736x/7b/f9/33/7bf933535dc4c1396657696341a88855.jpg" alt="Faery" class="creator-image">
                         <div class="creator-image-overlay"></div>
                     </div>
                     <div class="creator-details">
@@ -180,7 +196,7 @@
                         <div class="creator-signature">— Building bridges between imagination and form</div>
                     </div>
                     <div class="creator-image-container">
-                        <img src="{{ asset('images/ningning.jpg') }}" alt="Ike" class="creator-image">
+                        <img src="https://i.pinimg.com/736x/ea/8b/b9/ea8bb9a2c60481767410f6715e4d61ee.jpg" alt="Ike" class="creator-image">
                         <div class="creator-image-overlay"></div>
                     </div>
                 </div>
@@ -214,7 +230,7 @@
                     Begin Your Story
                 </a>
                 <a href="/portfolios" class="bg-transparent hover:bg-white/10 text-white font-semibold py-3 px-10 rounded-full border-2 border-white transition-all duration-300 transform hover:scale-105" style="box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);">
-                    Explore Galleries
+                    Explore Portfolios 
                 </a>
             </div>
         </div>
@@ -262,5 +278,93 @@
                 });
             });
         });
+
+        // Cursor Star Trail Effect
+const starCursorContainer = document.getElementById('star-cursor-container');
+const starSymbols = ['✦', '✧', '❂', '⚘', '✲'];
+let stars = [];
+
+document.addEventListener('mousemove', function(e) {
+    // Create a star element
+    const star = document.createElement('div');
+    star.className = 'cursor-star';
+    star.style.left = e.pageX + 'px';
+    star.style.top = e.pageY + 'px';
+    star.textContent = starSymbols[Math.floor(Math.random() * starSymbols.length)];
+    
+    // Random size and color variation
+    const size = 0.5 + Math.random() * 1.5;
+    star.style.fontSize = size + 'rem';
+    star.style.opacity = 0.6 + Math.random() * 0.4;
+    
+    // Add to DOM
+    starCursorContainer.appendChild(star);
+    stars.push({
+        element: star,
+        life: 100 // Life counter for the star
+    });
+    
+    // Limit number of stars for performance
+    if (stars.length > 25) {
+        const starToRemove = stars.shift();
+        starToRemove.element.remove();
+    }
+});
+
+// Animate stars fade out
+function animateStars() {
+    stars.forEach((star, index) => {
+        star.life -= 3;
+        if (star.life <= 0) {
+            star.element.remove();
+            stars.splice(index, 1);
+        } else {
+            star.element.style.opacity = star.life / 100;
+            // Add some movement
+            const currentTop = parseFloat(star.element.style.top);
+            star.element.style.top = (currentTop - 0.5) + 'px';
+        }
+    });
+    
+    requestAnimationFrame(animateStars);
+}
+
+animateStars();
+
+document.addEventListener('DOMContentLoaded', function() {
+    const stars = document.querySelectorAll('.floating-element');
+    const philosophySection = document.querySelector('.philosophy-section');
+
+    philosophySection.addEventListener('mousemove', (e) => {
+        stars.forEach(star => {
+            const rect = star.getBoundingClientRect();
+            const starX = rect.left + rect.width / 2;
+            const starY = rect.top + rect.height / 2;
+            const distanceX = e.clientX - starX;
+            const distanceY = e.clientY - starY;
+            const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+            // Only repel if cursor is within 120px of a star
+            if (distance < 120) {
+                const speed = parseFloat(star.getAttribute('data-speed')) || 0.1;
+                const force = (120 - distance) / 120 * 10 * speed; // Gentle push
+
+                // Calculate new position (smooth easing)
+                const newX = starX - (distanceX / distance) * force;
+                const newY = starY - (distanceY / distance) * force;
+
+                // Apply transform
+                star.style.transform = `translate(${newX - rect.left - rect.width / 2}px, ${newY - rect.top - rect.height / 2}px)`;
+            }
+        });
+    });
+
+    // Reset stars to original position when cursor leaves
+    philosophySection.addEventListener('mouseleave', () => {
+        stars.forEach(star => {
+            star.style.transform = 'translate(0, 0)';
+        });
+    });
+});
     </script>
 @endsection
