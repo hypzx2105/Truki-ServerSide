@@ -29,12 +29,6 @@
                 </a>
             </li>
             <li class="group">
-                <a href="#" class="flex items-center {{ request()->is('blog*') ? 'text-primary' : '' }}">
-                    <span class="mr-3 opacity-0 group-hover:opacity-100 transition-all duration-300">✦</span>
-                    <span>Blog</span>
-                </a>
-            </li>
-            <li class="group">
                 <a href="#" class="flex items-center {{ request()->is('contact*') ? 'text-primary' : '' }}">
                     <span class="mr-3 opacity-0 group-hover:opacity-100 transition-all duration-300">✦</span>
                     <span>Contact</span>
