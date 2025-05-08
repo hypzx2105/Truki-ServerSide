@@ -1,0 +1,21 @@
+{
+  "public/images/about.gif": {
+    "file": "assets/about-Ayf14aGt.gif",
+    "src": "public/images/about.gif"
+  },
+  "public/images/flowers.jpg": {
+    "file": "assets/flowers-DnBe_zB6.jpg",
+    "src": "public/images/flowers.jpg"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-CxI7RYaX.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-Bf4POITK.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
