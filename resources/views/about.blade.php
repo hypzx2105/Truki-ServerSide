@@ -8,6 +8,7 @@
 
     <!-- Hero Section with Animated Elements -->
     <div class="about-hero">
+        <div id="star-cursor-container" class="star-cursor-container"></div>
         <div class="about-hero-stars">
             <div class="about-star about-star-1 animate-sparkle">✦</div>
             <div class="about-star about-star-2 animate-sparkle" style="animation-delay: 0.5s;">✦</div>
@@ -281,7 +282,7 @@
 
         // Cursor Star Trail Effect
 const starCursorContainer = document.getElementById('star-cursor-container');
-const starSymbols = ['✦', '✧', '❂', '⚘', '✲'];
+const starSymbols = ['⚝⋆.˚'];
 let stars = [];
 
 document.addEventListener('mousemove', function(e) {

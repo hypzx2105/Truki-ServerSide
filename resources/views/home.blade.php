@@ -339,7 +339,7 @@
                 <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Conceptual</span>
             </div>
             
-            <a href="#" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
+            <a href="{{ route('portfolios.show', 2) }}" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
                 <span class="group-hover:underline">Discover More</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -369,12 +369,12 @@
                 <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Wearable Art</span>
             </div>
             
-            <a href="#" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
-                <span class="group-hover:underline">Discover More</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </a>
+            <a href="{{ route('portfolios.show', 3) }}" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
+    <span class="group-hover:underline">Discover More</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+</a>
         </div>
     </div>
     
@@ -399,12 +399,12 @@
                 <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Ambient</span>
             </div>
             
-            <a href="#" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
-                <span class="group-hover:underline">Discover More</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </a>
+            <a href="{{ route('portfolios.show', 4) }}" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
+    <span class="group-hover:underline">Discover More</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+</a>
         </div>
     </div>
     
@@ -429,12 +429,12 @@
                 <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Animation</span>
             </div>
             
-            <a href="#" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
-                <span class="group-hover:underline">Discover More</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </a>
+            <a href="{{ route('portfolios.show', 5) }}" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
+    <span class="group-hover:underline">Discover More</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+</a>
         </div>
     </div>
     
@@ -459,12 +459,12 @@
                 <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Digital Art</span>
             </div>
             
-            <a href="#" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
-                <span class="group-hover:underline">Discover More</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </a>
+            <a href="{{ route('portfolios.show', 6) }}" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
+    <span class="group-hover:underline">Discover More</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+</a>
         </div>
     </div>
     
@@ -489,12 +489,12 @@
                 <span class="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">Archival</span>
             </div>
             
-            <a href="#" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
-                <span class="group-hover:underline">Discover More</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </a>
+            <a href="{{ route('portfolios.show', 7) }}" class="text-primary hover:text-primary-dark text-sm font-medium flex items-center group">
+    <span class="group-hover:underline">Discover More</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+</a>
         </div>
     </div>
 </div>
@@ -541,7 +541,7 @@
             Join a community where art breathes, ideas flourish, and creativity knows no bounds.
         </p>
         <div class="flex flex-col sm:flex-row gap-6 justify-center fade-in-up" style="transition-delay: 0.4s;">
-            <a href="/register" class="bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl" style="box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);">
+            <a href="/portfolios/create" class="bg-white hover:bg-gray-100 text-primary font-semibold py-3 px-10 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl" style="box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);">
                 Set Sail
             </a>
             <a href="{{ route('lore') }}" class="bg-transparent hover:bg-white/10 text-white font-semibold py-3 px-10 rounded-full border-2 border-white transition-all duration-300 transform hover:scale-105">

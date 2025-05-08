@@ -1,124 +1,123 @@
-# Truki Lite – Public Portfolio Showcase
+# 🌟 Truki Lite – Public Portfolio Showcase
 
-**Truki Lite** is a public-facing Laravel portfolio gallery. It allows users to browse, search, and view portfolios that showcase personal or professional projects. Each portfolio includes a title, description, and an optional image. The goal is to simulate a public GitHub-like portfolio board.
-
----
-
-## 🌟 What It Does
-
-- Public homepage with welcome message
-- View all portfolio entries on a responsive grid
-- Create, edit, and delete portfolios (via the UI)
-- Upload and display images for each portfolio
-- Optional search bar to filter portfolios by title
-- Clean Tailwind CSS design
-- No login or authentication required
-- Ready for deployment on Microsoft Azure
+**Truki Lite** is a public-facing Laravel portfolio gallery. It allows users to browse, search, and view portfolios that showcase personal or professional projects. Each portfolio includes a title, description, and an optional image. The goal is to simulate a public GitHub-like portfolio board. 🎨🗂️
 
 ---
 
-## 🚀 Setup Instructions
+# 🌟 What It Does
 
-Follow these steps to run the app locally.
+- 🏠 Public homepage with welcome message
+- 🖼️ View all portfolio entries on a responsive grid
+- ✏️ Create, edit, and delete portfolios (via the UI)
+- 📸 Upload and display images for each portfolio
+- 🔍 Optional search bar to filter portfolios by title
+- 🎨 Clean Tailwind CSS design
+- 🔓 No login or authentication required
+- ☁️ Ready for deployment on Microsoft Azure
 
-### 1. Clone the Repository
+---
 
-```bash
-git clone https://github.com/hypzx2105/Truki-ServerSide.git
-cd Truki-ServerSide
-2. Install PHP & JS Dependencies
-bash
-Copiar
-Editar
-composer install
-npm install
-3. Configure .env and Generate App Key
-bash
-Copiar
-Editar
-cp .env.example .env
-php artisan key:generate
-4. Choose a Database Setup
-For SQLite (recommended for testing):
+## ✨ Features
 
-bash
-Copiar
-Editar
-touch database/database.sqlite
-Then in .env, update:
+- 🔍 **Search Portfolios** by title or description.
+- 🖼️ **Display Projects** with beautiful layout and image support.
+- 📱 **Responsive Design** for all screen sizes.
+- ⚡ **Fast and Lightweight** thanks to Laravel + Vite.
 
-ini
-Copiar
-Editar
-DB_CONNECTION=sqlite
-DB_DATABASE=/absolute/path/to/database/database.sqlite
-Or configure MySQL:
+---
 
-ini
-Copiar
-Editar
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=truki_lite
-DB_USERNAME=root
-DB_PASSWORD=your_password_here
-5. Run Migrations & Seed the Database
-bash
-Copiar
-Editar
-php artisan migrate --seed
-This creates the portfolios table and inserts sample entries.
+## 🛠️ Technologies Used
 
-6. Create Storage Symlink (for images)
-bash
-Copiar
-Editar
-php artisan storage:link
-7. Build Assets and Serve the App
-bash
-Copiar
-Editar
-npm run dev
-php artisan serve
-Go to http://127.0.0.1:8000 to view the site.
+- ⚙️ **Backend**: Laravel 10.x (PHP 8.1+)
+- 🖥️ **Frontend**: Blade + Tailwind CSS
+- 💾 **Database**: MySQL
+- 🚀 **Build Tools**: Vite
+- 🗃️ **Version Control**: Git & GitHub
 
-🖼️ Features In Detail
-Portfolios
-View all entries on the homepage, each showing title, image, and description.
+---
 
-Create/Edit
-Add a new portfolio via form with image upload. Edit existing entries.
+## 🚀 Installation
 
-Delete
-Delete portfolios directly from the listing view (confirmation required).
+Follow these steps to set up Truki Lite locally:
 
-Search
-Search portfolios by title using the search input on the homepage.
+1. **Clone the Repository**
 
-Image Upload
-Stored in /storage/app/public/portfolios and served via /public/storage.
+   ```bash
+   git clone https://github.com/hypzx2105/Truki-ServerSide.git
+   cd Truki-ServerSide
+   ```
 
-🗂️ File Structure Highlights
-app/Models/Portfolio.php – Eloquent model
+2. **Install Dependencies**
 
-app/Http/Controllers/PortfolioController.php – All logic for CRUD + file handling
+   ```bash
+   composer install
+   npm install
+   ```
 
-database/migrations/ – Portfolios schema
+3. **Configure Environment**
 
-database/seeders/DatabaseSeeder.php – Seeds example portfolios
+   ```bash
+   cp .env.example .env
+   ```
 
-resources/views/portfolios – Blade views (index, create, edit, show)
+   Update `.env` with your DB credentials and app settings.
 
-routes/web.php – Routing for portfolio CRUD and homepage
+4. **Generate Key**
 
-🌐 Deployment (Azure-Ready)
-This app is designed for easy deployment on Azure App Service.
+   ```bash
+   php artisan key:generate
+   ```
 
-Push to a public GitHub repository.
+5. **Run Migrations**
 
-Create a new Laravel App on Azure.
+   ```bash
+   php artisan migrate
+   ```
 
-Configure environment variables under App Settings.
+6. **Build Frontend Assets**
 
-Ensure php artisan storage:link is run on deployment.
+   ```bash
+   npm run build
+   ```
+
+7. **Start Server**
+
+   ```bash
+   php artisan serve
+   ```
+
+   Visit [http://localhost:8000](http://localhost:8000) 🚪
+
+---
+
+## 📂 Folder Structure
+
+- `app/` – Controllers, Models, Logic
+- `resources/views/` – Blade templates
+- `routes/web.php` – Route definitions
+- `public/` – Public assets and images
+- `database/migrations/` – Table definitions
+
+---
+
+## 🙋‍♀️ Usage
+
+- Home page displays all portfolios 🌐
+- Use the search bar to filter results 🔎
+- Click on a card to view full project details 📄
+
+---
+
+## 👥 Authors
+
+> You can update this section with your names ✍️
+
+- 🧑‍💻 Iker Arza 
+- 👩‍💻 Favour James Ayeye
+
+---
+
+## 📃 License
+
+This project is licensed under the [MIT License](LICENSE).  
+Feel free to use and contribute! 🤝
