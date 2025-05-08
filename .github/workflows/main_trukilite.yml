@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy PHP app to Azure Web App - Truki
+name: Build and deploy PHP app to Azure Web App - trukiLite
 
 on:
   push:
@@ -64,15 +64,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_BAE9CC65109C4F9583349CF15DA62B19 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_DA8A2638C10A40F7AF2A83C126DB7F81 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_346FB7F1BCF549E19FB93DDDE1C7A066 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_3BB8CF7A14224978A496A669F2315159 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_62194EE80D7141E58590D9EE4BE05EFD }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FEA60A84B62C40B7B7ECB06D67444C34 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
-          app-name: 'Truki'
+          app-name: 'trukiLite'
           slot-name: 'Production'
           package: .
           
