@@ -30,7 +30,6 @@
             </li>
             <li class="group">
                 <a href="/lore" class="flex items-center {{ request()->is('lore*') ? 'text-primary' : '' }}">
-                <a href="{{ url('/contact') }}" class="flex items-center {{ request()->is('contact*') ? 'text-primary' : '' }}">
                     <span class="mr-3 opacity-0 group-hover:opacity-100 transition-all duration-300">✦</span>
                     <span>Lore</span>
                 </a>
@@ -92,8 +91,6 @@
                 </a>
                 <a href="/lore" class="navbar-link group {{ request()->is('lore*') ? 'active' : '' }}">
                     <span class="navbar-link-text">Lore</span>
-                <a href="{{ url('/contact') }}" class="flex items-center {{ request()->is('contact*') ? 'text-primary' : '' }}">
-                    <span class="navbar-link-text">Contact</span>
                     <span class="navbar-link-underline"></span>
                     <span class="navbar-link-star">✦</span>
                 </a>
@@ -120,7 +117,6 @@
         <a href="{{ url('/portfolios') }}" class="navbar-mobile-link {{ request()->is('portfolios*') ? 'active' : '' }}">Portfolios</a>
         <a href="/about" class="navbar-mobile-link {{ request()->is('about*') ? 'active' : '' }}">About</a>
         <a href="/lore" class="navbar-mobile-link {{ request()->is('lore*') ? 'active' : '' }}">Lore</a>
-        <a href="{{ url('/contact') }}" class="navbar-mobile-link {{ request()->is('contact*') ? 'active' : '' }}">Contact</a>
 
     </div>
 </nav>
