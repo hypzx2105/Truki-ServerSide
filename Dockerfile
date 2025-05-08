@@ -1,28 +1,28 @@
-# Usa la imagen oficial de PHP con Apache
+# Dockerfile
+
 FROM php:8.2-apache
 
-# Instala dependencias
-RUN apt-get update && apt-get install -y \
-    git zip unzip libzip-dev libonig-dev libpng-dev libsqlite3-dev \
-    && docker-php-ext-install pdo pdo_sqlite
+# Install PHP extensions
+RUN docker-php-ext-install pdo pdo_sqlite
 
-# Copia los archivos del proyecto al contenedor
-COPY . /var/www/html
+# Enable Apache rewrite module
+RUN a2enmod rewrite
 
-# Establece el directorio raíz
+# Set working directory inside container
 WORKDIR /var/www/html
 
-# Instala Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Copy all Laravel files to the working directory
+COPY . /var/www/html
 
-# Instala dependencias del proyecto
-RUN composer install --no-dev --optimize-autoloader
+# Set correct document root for Laravel
+RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
 
-# Da permisos a Laravel
-RUN chmod -R 775 storage bootstrap/cache
+# Fix permissions (important!)
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
 
-# Expone el puerto de Apache
+# Expose port 80
 EXPOSE 80
 
-# Inicia Apache en primer plano
+# Start Apache in foreground
 CMD ["apache2-foreground"]
