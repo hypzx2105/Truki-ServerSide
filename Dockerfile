@@ -11,7 +11,7 @@ RUN docker-php-ext-install pdo pdo_sqlite
 # Enable Apache rewrite module
 RUN a2enmod rewrite
 
-# Install Composer (before copying app files)
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Copy project files
@@ -26,3 +26,6 @@ WORKDIR /var/www/html
 
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader
+
+# ✅ Run migration automatically during build
+RUN php artisan migrate --force
